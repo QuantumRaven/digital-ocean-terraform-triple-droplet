@@ -1,4 +1,5 @@
 variable "token" {}
+variable "pubkey" {}
 
 #
 # Run terraform init to install/download provider libraries.
@@ -12,7 +13,7 @@ provider "digitalocean" {
 resource "digitalocean_ssh_key" "my-vpc" {
 
     name       = "test-1"
-    public_key = file("~/.ssh/chloe_sso.pub")
+    public_key = var.pubkey
 
 }
 
