@@ -12,8 +12,8 @@ provider "digitalocean" {
 
 resource "digitalocean_ssh_key" "my-vpc" {
 
-    name       = "test-1"
-    public_key = var.pubkey
+    name = "test-1"
+    public_key = file(var.pubkey)
 
 }
 
