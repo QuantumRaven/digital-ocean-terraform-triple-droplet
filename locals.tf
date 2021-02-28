@@ -1,7 +1,7 @@
 locals {
 
     whitelist_ips = [
-        "[your_ip_here/32]"
+        "your_ip_here/32"
     ]
 
     droplets = [
