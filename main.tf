@@ -1,4 +1,4 @@
-variable "token" {}
+variable "do_token" {}
 variable "pubkey" {}
 
 #
@@ -6,7 +6,7 @@ variable "pubkey" {}
 #
 provider "digitalocean" {
 
-    token = var.token
+    token = var.do_token
 
 }
 
@@ -55,7 +55,7 @@ resource "digitalocean_firewall" "test-1" {
 
 }
 
-output "test-asdfasdf" {
+output "test-droplet-deployment" {
 
     value = digitalocean_droplet.dropletz[*].ipv4_address
 
