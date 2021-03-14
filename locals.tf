@@ -2,9 +2,18 @@ locals {
 
     whitelist_ips = [
 
-        "your_public_ip_here/32"
+        #######################################################
+        # Replace below with: public_ip_address_goes_here/32:
+        # Example:
+        # "0.0.0.0/32"
+        #######################################################
 
     ]
+
+    ###################################
+    # Name of each droplet:
+    # Created during terraform apply
+    ###################################
 
     droplets = [
 
