@@ -1,21 +1,39 @@
+###################################################
+# Token and Pubkey Info:
+# Pulls the key data from the .tf_variables file
+###################################################
+
 variable "do_token" {}
 variable "pubkey" {}
 
-#
-# Run terraform init to install/download provider libraries.
-#
+################################
+# Specifies do_token variable
+# for SSH
+################################
+
 provider "digitalocean" {
 
     token = var.do_token
 
 }
 
-resource "digitalocean_ssh_key" "my-vpc" {
+################################################
+# VPC Key Info:
+# Used for remoting in to the created droplets
+################################################
+
+resource "digitalocean_ssh_key" "do-vpc" {
 
     name = "test-1"
     public_key = file(var.pubkey)
 
 }
+
+############################################
+# Droplet Info:
+# Used to define the OS, Region, and Size
+# based on data in locals.tf file
+############################################
 
 resource "digitalocean_droplet" "dropletz" {
 
@@ -27,10 +45,16 @@ resource "digitalocean_droplet" "dropletz" {
     size   = "s-1vcpu-1gb"
 
     ssh_keys = [
-        digitalocean_ssh_key.my-vpc.id
+        digitalocean_ssh_key.do-vpc.id
     ]
 
 }
+
+###########################################
+# Firewall Info:
+# Firewall info that sits between clients
+# and the Floating IP and Bastion VPS
+###########################################
 
 resource "digitalocean_firewall" "test-1" {
 
@@ -54,6 +78,11 @@ resource "digitalocean_firewall" "test-1" {
     }
 
 }
+
+#################################################
+# Informs user of when creation starts and ends
+# and if there are any errors
+#################################################
 
 output "test-droplet-deployment" {
 
