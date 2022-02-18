@@ -1,6 +1,5 @@
 ###################################################
 # Token and Pubkey Info:
-# Pulls the key data from the .tf_variables file
 ###################################################
 
 variable "do_token" {}
